@@ -4,413 +4,593 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HegaiSkin — Antes de cuidar da pele, a gente precisa te ouvir</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --gold: #B8912A;
-  --gold-light: #C9A96E;
-  --gold-pale: #F5E8C8;
-  --cream: #F7F0E3;
-  --dark: #0D0806;
-  --text: #1A0E00;
-  --mid: #3D2200;
-  --muted: #6B4A20;
-  --white: #FFFFFF;
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#8B6200;
+  --goldm:#B8912A;
+  --goldl:#C9A96E;
+  --goldp:#F5E8C8;
+  --dark:#1A0E00;
+  --text:#2A1800;
+  --mid:#5C3800;
+  --muted:#8B6020;
+  --cream:#FAF5EC;
+  --rose:#F9EEE8;
+  --sage:#EDF2EB;
+  --sky:#EBF0F5;
+  --border:#DFC896;
+  --white:#FFFFFF;
 }
-html, body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
-#prog { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: #E8DBC4; z-index: 999; }
-#prog-fill { height: 100%; background: var(--gold); width: 0; transition: width .5s ease; }
-#hdr { position: fixed; top: 0; left: 0; right: 0; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; z-index: 998; background: linear-gradient(to bottom, var(--cream) 65%, transparent); }
-.logo { font-family: 'Cormorant Garamond', serif; font-size: 17px; letter-spacing: .18em; color: var(--dark); }
-.logo span { color: var(--gold); }
-#hdr-n { font-size: 12px; color: var(--muted); letter-spacing: .04em; }
-.tela { display: none; min-height: 100vh; padding: 90px 24px 60px; justify-content: center; align-items: center; }
-.tela.ativa { display: flex; }
-.inner { width: 100%; max-width: 560px; }
-/* CAPA */
-#t0 { background: var(--dark); }
-#t0 .inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
-.c-eyebrow { font-size: 10px; letter-spacing: .22em; color: var(--gold); text-transform: uppercase; border: 1px solid rgba(184,145,42,.3); padding: 7px 18px; border-radius: 2px; margin-bottom: 28px; }
-.c-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 7vw, 54px); font-weight: 300; color: #F7F0E3; line-height: 1.15; margin-bottom: 20px; }
-.c-title em { color: var(--gold); font-style: italic; }
-.c-sub { font-size: 14px; color: #9A7848; line-height: 1.75; max-width: 400px; margin: 0 auto 32px; font-weight: 300; }
-.c-pills { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; }
-.cpill { font-size: 11px; color: #6B5020; display: flex; align-items: center; gap: 5px; }
-.cpill::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); display: block; }
-.btn-start { background: var(--gold); color: var(--dark); border: none; padding: 15px 50px; font-size: 13px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; border-radius: 2px; font-family: 'DM Sans', sans-serif; transition: all .2s; }
-.btn-start:hover { background: var(--gold-light); transform: translateY(-2px); }
-/* PERGUNTAS */
-.bloco { font-size: 10px; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
-.qnum { font-size: 11px; color: var(--muted); margin-bottom: 14px; letter-spacing: .06em; }
-.qtitulo { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 4vw, 34px); font-weight: 400; color: var(--dark); line-height: 1.3; margin-bottom: 8px; }
-.qdica { font-size: 12px; color: var(--muted); margin-bottom: 24px; font-style: italic; }
-/* CARDS */
-.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
-.cards.cols3 { grid-template-columns: 1fr 1fr 1fr; }
-.card { background: var(--white); border: 1.5px solid #DDD0B0; border-radius: 10px; padding: 18px 16px; cursor: pointer; font-size: 13px; color: var(--mid); line-height: 1.5; font-weight: 400; transition: all .2s; }
-.card:hover { border-color: var(--gold-light); background: var(--gold-pale); color: var(--dark); }
-.card.sel { background: var(--gold); border-color: var(--gold); color: var(--dark); font-weight: 500; transform: translateY(-2px); }
-/* CHIPS */
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-.chip { padding: 10px 20px; border: 1.5px solid #DDD0B0; border-radius: 100px; font-size: 13px; color: var(--mid); background: var(--white); cursor: pointer; transition: all .2s; font-weight: 400; }
-.chip:hover { border-color: var(--gold-light); color: var(--dark); }
-.chip.sel { background: var(--dark); border-color: var(--dark); color: var(--cream); font-weight: 500; }
-/* TAGS */
-.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-.tag { padding: 9px 16px; border: 1.5px solid #C9A96E; border-radius: 4px; font-size: 13px; color: var(--mid); background: var(--white); cursor: pointer; transition: all .18s; font-weight: 400; }
-.tag:hover { background: var(--gold-pale); color: var(--dark); }
-.tag.sel { background: var(--gold-pale); border-color: var(--gold); color: var(--mid); font-weight: 500; }
-.tag.sel::before { content: '✓  '; font-size: 11px; color: var(--gold); }
-/* BARRAS */
-.escala { margin-bottom: 28px; }
-.barras { display: flex; gap: 8px; align-items: flex-end; margin-bottom: 10px; }
-.bw { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
-.bb { width: 100%; border-radius: 4px; background: #DDD0B0; transition: all .2s; }
-.bw:nth-child(1) .bb { height: 24px; }
-.bw:nth-child(2) .bb { height: 40px; }
-.bw:nth-child(3) .bb { height: 56px; }
-.bw:nth-child(4) .bb { height: 72px; }
-.bw:nth-child(5) .bb { height: 88px; }
-.bw:hover .bb { background: var(--gold-light); }
-.bw.sel .bb { background: var(--gold); }
-.bn { font-size: 13px; color: var(--muted); }
-.bw.sel .bn { color: var(--dark); font-weight: 500; }
-.bends { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-style: italic; }
-/* RADIO */
-.radios { display: grid; gap: 8px; margin-bottom: 28px; }
-.ropt { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--white); border: 1.5px solid #DDD0B0; border-radius: 10px; cursor: pointer; transition: all .2s; }
-.ropt:hover { border-color: var(--gold-light); background: var(--gold-pale); }
-.ropt.sel { border-color: var(--gold); background: var(--gold-pale); }
-.rc { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #C9A96E; flex-shrink: 0; background: var(--white); position: relative; transition: all .2s; }
-.ropt.sel .rc { background: var(--gold); border-color: var(--gold); }
-.ropt.sel .rc::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--white); }
-.rl strong { display: block; font-size: 15px; color: var(--dark); font-weight: 500; margin-bottom: 2px; }
-.rl span { font-size: 12px; color: var(--muted); font-style: italic; }
-/* TEXTAREA */
-.ta { width: 100%; background: transparent; border: none; border-bottom: 2px solid #C9A96E; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; font-style: italic; color: var(--dark); padding: 12px 0; resize: none; outline: none; min-height: 90px; line-height: 1.5; transition: border-color .2s; margin-bottom: 28px; }
-.ta::placeholder { color: #C9A96E; }
-.ta:focus { border-bottom-color: var(--dark); }
-/* NAV */
-.nav { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-.btn-back { background: none; border: none; font-size: 12px; color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 4px 0; transition: color .2s; }
-.btn-back:hover { color: var(--mid); }
-.pode-pular { font-size: 11px; color: var(--gold-light); font-style: italic; }
-.btn-prox { background: var(--dark); color: var(--cream); border: none; padding: 13px 36px; font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all .2s; opacity: .3; pointer-events: none; }
-.btn-prox.ok { opacity: 1; pointer-events: all; }
-.btn-prox.ok:hover { background: var(--mid); }
-/* FIM */
-#tfim { background: var(--dark); text-align: center; }
-#tfim .inner { display: flex; flex-direction: column; align-items: center; }
-.fim-g { font-size: 36px; color: var(--gold); margin-bottom: 28px; font-family: 'Cormorant Garamond', serif; }
-.fim-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 44px); font-weight: 300; color: #F7F0E3; line-height: 1.2; margin-bottom: 16px; }
-.fim-h em { color: var(--gold); font-style: italic; }
-.fim-p { font-size: 14px; color: #9A7848; line-height: 1.75; max-width: 380px; margin: 0 auto 32px; font-weight: 300; }
-.fim-b { font-size: 10px; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; border: 1px solid rgba(184,145,42,.25); padding: 9px 22px; border-radius: 2px; }
-@media (max-width: 480px) {
-  .cards { grid-template-columns: 1fr; }
-  .cards.cols3 { grid-template-columns: 1fr 1fr; }
-  #hdr { padding: 14px 18px; }
-  .tela { padding: 75px 18px 50px; }
+html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text)}
+
+/* ── BARRA TOPO ── */
+#ptop{position:fixed;top:0;left:0;right:0;height:3px;background:#EAD9B0;z-index:999}
+#pfill{height:100%;background:var(--goldm);width:0%;transition:width .5s ease}
+
+/* ── HEADER ── */
+#hdr{position:fixed;top:0;left:0;right:0;padding:15px 28px;display:flex;justify-content:space-between;align-items:center;z-index:998;background:linear-gradient(to bottom,var(--cream) 55%,transparent)}
+.logo{font-family:'Playfair Display',serif;font-size:15px;letter-spacing:.08em;color:var(--dark);font-style:italic}
+.logo b{font-style:normal;letter-spacing:.18em;color:var(--goldm);font-weight:400;font-family:'DM Sans',sans-serif;font-size:13px}
+#hdr-n{font-size:11px;color:var(--muted)}
+
+/* ── BARRA PROGRESSO VISUAL ── */
+#pbar-wrap{position:fixed;top:3px;left:0;right:0;z-index:997;display:none;padding:10px 28px 0;background:linear-gradient(to bottom,var(--cream) 80%,transparent)}
+#pbar-wrap.show{display:block}
+.pbar-row{display:flex;gap:4px;align-items:center}
+.pbar-step{flex:1;height:4px;border-radius:2px;background:#EAD9B0;transition:background .4s ease}
+.pbar-step.done{background:var(--goldm)}
+.pbar-step.active{background:var(--goldl)}
+.pbar-pct{font-size:10px;color:var(--muted);margin-left:8px;white-space:nowrap;letter-spacing:.04em}
+
+/* ── TELAS ── */
+.tela{display:none;min-height:100vh;padding:100px 24px 60px;justify-content:center;align-items:flex-start}
+.tela.ativa{display:flex}
+.inner{width:100%;max-width:520px}
+
+/* FUNDOS POR BLOCO */
+#t0,#tcontato,#tfim{background:#1A0E00}
+#t1,#t2,#t3{background:var(--cream)}
+#t4,#t5,#t6,#t7{background:var(--rose)}
+#t8,#t9,#t10{background:var(--sage)}
+#t11,#t12,#t13{background:var(--sky)}
+#t14,#t15,#t16{background:var(--cream)}
+#t17,#t18,#t19,#t20{background:var(--rose)}
+
+/* ── CAPA ── */
+#t0 .inner{text-align:center;display:flex;flex-direction:column;align-items:center;padding-top:20px}
+.c-pill{font-size:10px;letter-spacing:.2em;color:var(--goldl);text-transform:uppercase;border:1px solid rgba(201,169,110,.3);padding:7px 20px;border-radius:100px;margin-bottom:32px;display:inline-block}
+.c-h{font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,56px);font-weight:400;color:#FAF5EC;line-height:1.15;margin-bottom:20px}
+.c-h em{color:var(--goldl);font-style:italic}
+.c-p{font-size:14px;color:#9A7040;line-height:1.8;max-width:380px;margin:0 auto 32px;font-weight:300}
+.c-meta{display:flex;gap:18px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.c-m{font-size:11px;color:#6B4A18;display:flex;align-items:center;gap:5px}
+.c-m::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--goldl);display:block}
+.btn-start{background:var(--goldm);color:var(--dark);border:none;padding:15px 52px;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-start:hover{background:var(--goldl);transform:translateY(-2px)}
+
+/* ── LABEL DO BLOCO ── */
+.bloco{font-size:10px;letter-spacing:.2em;color:var(--goldm);text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.bloco.inv{color:var(--goldl)}
+.qnum{font-size:11px;color:var(--muted);margin-bottom:12px;letter-spacing:.05em}
+.qtit{font-family:'Playfair Display',serif;font-size:clamp(20px,3.8vw,30px);font-weight:400;color:var(--dark);line-height:1.35;margin-bottom:8px}
+.qdic{font-size:12px;color:var(--muted);margin-bottom:22px;font-style:italic}
+
+/* ── ESTILO A: CARDS com flip animado ── */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px}
+.cards.c3{grid-template-columns:1fr 1fr 1fr}
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:18px 14px;cursor:pointer;font-size:13px;color:var(--mid);line-height:1.5;font-weight:400;transition:all .2s;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;inset:0;background:var(--goldm);opacity:0;transition:opacity .2s;border-radius:10px}
+.card:hover{border-color:var(--goldm);transform:translateY(-2px)}
+.card.sel{background:var(--goldm);border-color:var(--goldm);color:var(--dark);font-weight:500;transform:translateY(-3px)}
+.card.sel::before{content:'✓';position:absolute;top:10px;right:12px;font-size:12px;color:var(--dark);opacity:.6}
+
+/* ── ESTILO B: CHIPS deslizantes ── */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.chip{padding:11px 22px;border:1.5px solid var(--border);border-radius:100px;font-size:13px;color:var(--mid);background:var(--white);cursor:pointer;transition:all .25s;font-weight:400;position:relative}
+.chip:hover{border-color:var(--goldm);color:var(--dark);transform:translateX(3px)}
+.chip.sel{background:var(--dark);border-color:var(--dark);color:#FAF5EC;font-weight:500;transform:translateX(6px)}
+
+/* ── ESTILO C: TAGS com checkmark animado ── */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.tag{padding:10px 16px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;color:var(--mid);background:var(--white);cursor:pointer;transition:all .18s;font-weight:400}
+.tag:hover{border-color:var(--goldm);background:var(--goldp)}
+.tag.sel{background:var(--goldp);border-color:var(--goldm);color:var(--dark);font-weight:500}
+.tag.sel::before{content:'✓  ';font-size:11px;color:var(--goldm)}
+
+/* ── ESTILO D: BARRAS crescentes animadas ── */
+.escala{margin-bottom:26px}
+.barras{display:flex;gap:10px;align-items:flex-end;margin-bottom:10px;height:100px}
+.bw{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;cursor:pointer;height:100%}
+.bb{width:100%;border-radius:4px 4px 0 0;background:#EAD9B0;transition:all .25s;transform-origin:bottom}
+.bw:nth-child(1) .bb{height:20%}
+.bw:nth-child(2) .bb{height:40%}
+.bw:nth-child(3) .bb{height:60%}
+.bw:nth-child(4) .bb{height:80%}
+.bw:nth-child(5) .bb{height:100%}
+.bw:hover .bb{background:var(--goldl);transform:scaleY(1.05)}
+.bw.sel .bb{background:var(--goldm)}
+.bn{font-size:13px;color:var(--muted);font-weight:400;transition:all .2s}
+.bw.sel .bn{color:var(--dark);font-weight:500}
+.bends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-style:italic;margin-top:6px}
+
+/* ── ESTILO E: RADIO estilizado ── */
+.radios{display:grid;gap:8px;margin-bottom:26px}
+.ropt{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s}
+.ropt:hover{border-color:var(--goldm);background:var(--goldp);transform:translateX(4px)}
+.ropt.sel{border-color:var(--goldm);background:var(--goldp);transform:translateX(6px)}
+.rc{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;background:var(--white);position:relative;transition:all .2s}
+.ropt.sel .rc{background:var(--goldm);border-color:var(--goldm)}
+.ropt.sel .rc::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:var(--white)}
+.rl strong{display:block;font-size:14px;color:var(--dark);font-weight:500;margin-bottom:2px}
+.rl span{font-size:11px;color:var(--muted);font-style:italic}
+
+/* ── ESTILO F: TEXTAREA expansível ── */
+.ta{width:100%;background:transparent;border:none;border-bottom:2px solid var(--border);font-family:'Playfair Display',serif;font-size:20px;font-weight:400;font-style:italic;color:var(--dark);padding:10px 0;resize:none;outline:none;min-height:80px;line-height:1.6;transition:all .3s;margin-bottom:26px;display:block}
+.ta::placeholder{color:#C9A96E;font-style:italic}
+.ta:focus{border-bottom-color:var(--goldm);min-height:110px}
+
+/* ── NAVEGAÇÃO ── */
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.btn-back{background:none;border:none;font-size:12px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:4px 0;transition:color .2s}
+.btn-back:hover{color:var(--mid)}
+.pular{font-size:11px;color:var(--goldl);font-style:italic;cursor:pointer}
+.btn-prox{background:var(--dark);color:#FAF5EC;border:none;padding:13px 36px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;opacity:.25;pointer-events:none}
+.btn-prox.ok{opacity:1;pointer-events:all}
+.btn-prox.ok:hover{background:var(--mid);transform:translateX(3px)}
+
+/* ── TELA CONTATO ── */
+#tcontato .inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+.ct-g{font-family:'Playfair Display',serif;font-size:32px;color:var(--goldl);margin-bottom:20px;font-style:italic}
+.ct-h{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,34px);font-weight:400;color:#FAF5EC;line-height:1.3;margin-bottom:12px;max-width:440px}
+.ct-h em{color:var(--goldl);font-style:italic}
+.ct-p{font-size:13px;color:#9A7040;line-height:1.75;max-width:400px;margin:0 auto 32px;font-weight:300}
+.campo-wrap{width:100%;max-width:400px;margin-bottom:14px;text-align:left}
+.campo-lbl{font-size:10px;letter-spacing:.15em;color:var(--goldl);text-transform:uppercase;margin-bottom:6px;display:block}
+.campo{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(201,169,110,.25);border-radius:6px;padding:13px 16px;font-size:14px;color:#FAF5EC;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.campo::placeholder{color:rgba(255,255,255,.18)}
+.campo:focus{border-color:var(--goldl)}
+.btn-enviar{background:var(--goldm);color:var(--dark);border:none;padding:14px 48px;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;transition:all .2s;margin-top:22px;width:100%;max-width:400px}
+.btn-enviar:hover{background:var(--goldl);transform:translateY(-1px)}
+.btn-pular{background:none;border:none;font-size:11px;color:#6B4A18;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:14px;text-decoration:underline;letter-spacing:.04em}
+.btn-pular:hover{color:#9A7040}
+
+/* ── TELA FINAL ── */
+#tfim .inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+.fim-g{font-family:'Playfair Display',serif;font-size:40px;color:var(--goldl);margin-bottom:24px;font-style:italic}
+.fim-h{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,42px);font-weight:400;color:#FAF5EC;line-height:1.2;margin-bottom:14px}
+.fim-h em{color:var(--goldl);font-style:italic}
+.fim-p{font-size:14px;color:#9A7040;line-height:1.75;max-width:360px;margin:0 auto 28px;font-weight:300}
+.fim-b{font-size:10px;letter-spacing:.2em;color:var(--goldl);text-transform:uppercase;border:1px solid rgba(201,169,110,.2);padding:9px 22px;border-radius:2px}
+
+@media(max-width:480px){
+  .cards{grid-template-columns:1fr}
+  .cards.c3{grid-template-columns:1fr 1fr}
+  #hdr{padding:13px 18px}
+  .tela{padding:85px 18px 50px}
+  #pbar-wrap{padding:10px 18px 0}
 }
+
+/* ANIMAÇÃO ENTRADA */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.tela.ativa .inner{animation:fadeUp .35s ease both}
 </style>
 </head>
 <body>
-<div id="prog"><div id="prog-fill"></div></div>
-<div id="hdr"><div class="logo">HEGAI<span>SKIN</span></div><div id="hdr-n"></div></div>
 
+<div id="ptop"><div id="pfill"></div></div>
+
+<div id="hdr">
+  <div class="logo">Hegai<b>SKIN</b></div>
+  <div id="hdr-n"></div>
+</div>
+
+<div id="pbar-wrap" class="">
+  <div class="pbar-row" id="pbar-row"></div>
+</div>
+
+<!-- ══ CAPA ══ -->
 <div class="tela ativa" id="t0">
   <div class="inner">
-    <div class="c-eyebrow">Para mulheres que amam skincare</div>
-    <h1 class="c-title">Antes de cuidar da pele,<br>a gente precisa <em>te ouvir.</em></h1>
-    <p class="c-sub">Sem julgamento, sem venda. Só queremos entender o que passa pela cabeça de quem ama skincare — mas às vezes se perde no caminho.</p>
-    <div class="c-pills"><span class="cpill">4 minutos</span><span class="cpill">Anônimo</span><span class="cpill">Sem spam</span></div>
+    <div class="c-pill">Para mulheres que amam skincare</div>
+    <h1 class="c-h">Antes de cuidar da pele,<br>a gente precisa <em>te ouvir.</em></h1>
+    <p class="c-p">Sem julgamento, sem venda. Só queremos entender o que passa pela cabeça de quem ama skincare — mas às vezes se perde no caminho.</p>
+    <div class="c-meta">
+      <span class="c-m">4 minutos</span>
+      <span class="c-m">Sem spam</span>
+      <span class="c-m">Você faz parte disso</span>
+    </div>
     <button class="btn-start" onclick="ir(1)">Quero participar</button>
   </div>
 </div>
 
-<div class="tela" id="t1"><div class="inner">
-  <div class="bloco">Sobre você</div><div class="qnum">01 / 20</div>
-  <h2 class="qtitulo">Qual dessas frases mais combina com você agora?</h2>
-  <div class="cards" id="g1">
-    <div class="card" onclick="sc(this,'q1')">Estou começando do zero</div>
-    <div class="card" onclick="sc(this,'q1')">Tenho produtos mas não sei usar direito</div>
-    <div class="card" onclick="sc(this,'q1')">Já tenho rotina mas quero melhorar</div>
-    <div class="card" onclick="sc(this,'q1')">Já fui consistente mas parei</div>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(0)">← voltar</button><span></span><button class="btn-prox" id="p1" onclick="ir(2)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t2"><div class="inner">
-  <div class="bloco">Sobre você</div><div class="qnum">02 / 20</div>
-  <h2 class="qtitulo">Quantos produtos de skincare você tem em casa hoje?</h2>
-  <div class="chips" id="g2">
-    <span class="chip" onclick="sh(this,'q2')">Nenhum ainda</span>
-    <span class="chip" onclick="sh(this,'q2')">1 a 3</span>
-    <span class="chip" onclick="sh(this,'q2')">4 a 8</span>
-    <span class="chip" onclick="sh(this,'q2')">Mais de 8 — minha prateleira tá cheia</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(1)">← voltar</button><span></span><button class="btn-prox" id="p2" onclick="ir(3)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t3"><div class="inner">
-  <div class="bloco">Sobre você</div><div class="qnum">03 / 20</div>
-  <h2 class="qtitulo">Quantos desses produtos você usa de forma consistente?</h2>
-  <div class="chips" id="g3">
-    <span class="chip" onclick="sh(this,'q3')">Nenhum</span>
-    <span class="chip" onclick="sh(this,'q3')">Só 1 ou 2</span>
-    <span class="chip" onclick="sh(this,'q3')">Metade deles</span>
-    <span class="chip" onclick="sh(this,'q3')">Quase todos</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(2)">← voltar</button><span></span><button class="btn-prox" id="p3" onclick="ir(4)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t4"><div class="inner">
-  <div class="bloco">A dor de verdade</div><div class="qnum">04 / 20</div>
-  <h2 class="qtitulo">O que mais te trava na hora de montar uma rotina?</h2>
-  <p class="qdica">Pode marcar mais de um.</p>
-  <div class="tags" id="g4">
-    <span class="tag" onclick="st(this,'q4')">Não sei a ordem certa dos produtos</span>
-    <span class="tag" onclick="st(this,'q4')">Medo de misturar ingredientes errados</span>
-    <span class="tag" onclick="st(this,'q4')">Não sei o que minha pele precisa</span>
-    <span class="tag" onclick="st(this,'q4')">Muito produto, muita informação, confusão</span>
-    <span class="tag" onclick="st(this,'q4')">Falta de tempo pra pesquisar</span>
-    <span class="tag" onclick="st(this,'q4')">Já tentei e não vi resultado</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(3)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p4" onclick="ir(5)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t5"><div class="inner">
-  <div class="bloco">A dor de verdade</div><div class="qnum">05 / 20</div>
-  <h2 class="qtitulo">Você já comprou algum produto que ficou parado sem usar?</h2>
-  <div class="cards cols3" id="g5">
-    <div class="card" onclick="sc(this,'q5')">Sim, tenho vários assim</div>
-    <div class="card" onclick="sc(this,'q5')">Sim, uns poucos</div>
-    <div class="card" onclick="sc(this,'q5')">Não, uso tudo que compro</div>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(4)">← voltar</button><span></span><button class="btn-prox" id="p5" onclick="ir(6)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t6"><div class="inner">
-  <div class="bloco">A dor de verdade</div><div class="qnum">06 / 20</div>
-  <h2 class="qtitulo">Se você tem produtos parados, por que eles estão ali sem uso?</h2>
-  <p class="qdica">Pode marcar mais de um.</p>
-  <div class="tags" id="g6">
-    <span class="tag" onclick="st(this,'q6')">Não sei como encaixar na rotina</span>
-    <span class="tag" onclick="st(this,'q6')">Comprei por impulso e me arrependi</span>
-    <span class="tag" onclick="st(this,'q6')">Vi em algum lugar e achei que precisava</span>
-    <span class="tag" onclick="st(this,'q6')">Minha pele reagiu mal e parei</span>
-    <span class="tag" onclick="st(this,'q6')">Não aplicável</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(5)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p6" onclick="ir(7)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t7"><div class="inner">
-  <div class="bloco">A dor de verdade</div><div class="qnum">07 / 20</div>
-  <h2 class="qtitulo">O quanto você sente que desperdiçou dinheiro com skincare?</h2>
-  <div class="escala">
-    <div class="barras" id="g7">
-      <div class="bw" onclick="sb(this,'q7',1)"><div class="bb"></div><span class="bn">1</span></div>
-      <div class="bw" onclick="sb(this,'q7',2)"><div class="bb"></div><span class="bn">2</span></div>
-      <div class="bw" onclick="sb(this,'q7',3)"><div class="bb"></div><span class="bn">3</span></div>
-      <div class="bw" onclick="sb(this,'q7',4)"><div class="bb"></div><span class="bn">4</span></div>
-      <div class="bw" onclick="sb(this,'q7',5)"><div class="bb"></div><span class="bn">5</span></div>
+<!-- Q1 CARDS -->
+<div class="tela" id="t1">
+  <div class="inner">
+    <div class="bloco">Sobre você</div><div class="qnum">01 / 20</div>
+    <h2 class="qtit">Qual dessas frases mais combina com você agora?</h2>
+    <div class="cards" id="g1">
+      <div class="card" onclick="sc(this,'q1')">Estou começando do zero</div>
+      <div class="card" onclick="sc(this,'q1')">Tenho produtos mas não sei usar direito</div>
+      <div class="card" onclick="sc(this,'q1')">Já tenho rotina mas quero melhorar</div>
+      <div class="card" onclick="sc(this,'q1')">Já fui consistente mas parei</div>
     </div>
-    <div class="bends"><span>Nunca desperdicei</span><span>Muito dinheiro foi embora</span></div>
+    <div class="nav"><button class="btn-back" onclick="ir(0)">← voltar</button><span></span><button class="btn-prox" id="p1" onclick="ir(2)">Próxima →</button></div>
   </div>
-  <div class="nav"><button class="btn-back" onclick="ir(6)">← voltar</button><span></span><button class="btn-prox" id="p7" onclick="ir(8)">Próxima →</button></div>
-</div></div>
+</div>
 
-<div class="tela" id="t8"><div class="inner">
-  <div class="bloco">Informação e confiança</div><div class="qnum">08 / 20</div>
-  <h2 class="qtitulo">Onde você costuma buscar informação sobre skincare?</h2>
-  <p class="qdica">Pode marcar mais de um.</p>
-  <div class="tags" id="g8">
-    <span class="tag" onclick="st(this,'q8')">Instagram</span>
-    <span class="tag" onclick="st(this,'q8')">TikTok</span>
-    <span class="tag" onclick="st(this,'q8')">YouTube</span>
-    <span class="tag" onclick="st(this,'q8')">Indicação de amigas</span>
-    <span class="tag" onclick="st(this,'q8')">Dermatologista</span>
-    <span class="tag" onclick="st(this,'q8')">Google</span>
-    <span class="tag" onclick="st(this,'q8')">Fico perdida mesmo</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(7)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p8" onclick="ir(9)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t9"><div class="inner">
-  <div class="bloco">Informação e confiança</div><div class="qnum">09 / 20</div>
-  <h2 class="qtitulo">Você já seguiu uma dica de skincare que não funcionou para você?</h2>
-  <div class="cards" id="g9">
-    <div class="card" onclick="sc(this,'q9')">Sim, várias vezes</div>
-    <div class="card" onclick="sc(this,'q9')">Sim, uma ou duas</div>
-    <div class="card" onclick="sc(this,'q9')">Não, geralmente funciona</div>
-    <div class="card" onclick="sc(this,'q9')">Nunca sigo dicas, não confio</div>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(8)">← voltar</button><span></span><button class="btn-prox" id="p9" onclick="ir(10)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t10"><div class="inner">
-  <div class="bloco">Informação e confiança</div><div class="qnum">10 / 20</div>
-  <h2 class="qtitulo">O que faria você confiar de verdade em uma recomendação de skincare?</h2>
-  <p class="qdica">Pode marcar mais de um.</p>
-  <div class="tags" id="g10">
-    <span class="tag" onclick="st(this,'q10')">Antes e depois real de pessoas comuns</span>
-    <span class="tag" onclick="st(this,'q10')">Explicação do porquê funciona para mim</span>
-    <span class="tag" onclick="st(this,'q10')">Ser baseado nos meus produtos</span>
-    <span class="tag" onclick="st(this,'q10')">Recomendação de uma especialista</span>
-    <span class="tag" onclick="st(this,'q10')">Poder testar antes de pagar</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(9)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p10" onclick="ir(11)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t11"><div class="inner">
-  <div class="bloco">Rotina e consistência</div><div class="qnum">11 / 20</div>
-  <h2 class="qtitulo">Com que frequência você faz uma rotina de skincare?</h2>
-  <div class="chips" id="g11">
-    <span class="chip" onclick="sh(this,'q11')">Todo dia, manhã e noite</span>
-    <span class="chip" onclick="sh(this,'q11')">Quase todo dia</span>
-    <span class="chip" onclick="sh(this,'q11')">Quando lembro</span>
-    <span class="chip" onclick="sh(this,'q11')">Raramente ou nunca</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(10)">← voltar</button><span></span><button class="btn-prox" id="p11" onclick="ir(12)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t12"><div class="inner">
-  <div class="bloco">Rotina e consistência</div><div class="qnum">12 / 20</div>
-  <h2 class="qtitulo">O que mais te faz abandonar uma rotina que estava funcionando?</h2>
-  <p class="qdica">Pode marcar mais de um.</p>
-  <div class="tags" id="g12">
-    <span class="tag" onclick="st(this,'q12')">Falta de tempo</span>
-    <span class="tag" onclick="st(this,'q12')">Não vi resultado rápido</span>
-    <span class="tag" onclick="st(this,'q12')">Minha pele reagiu e eu travei</span>
-    <span class="tag" onclick="st(this,'q12')">Comprei produtos novos e me perdi</span>
-    <span class="tag" onclick="st(this,'q12')">Não tenho rotina ainda</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(11)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p12" onclick="ir(13)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t13"><div class="inner">
-  <div class="bloco">Rotina e consistência</div><div class="qnum">13 / 20</div>
-  <h2 class="qtitulo">Qual o maior desejo que você tem para a sua pele hoje?</h2>
-  <p class="qdica">Pode marcar mais de um.</p>
-  <div class="tags" id="g13">
-    <span class="tag" onclick="st(this,'q13')">Pele mais uniforme e sem manchas</span>
-    <span class="tag" onclick="st(this,'q13')">Pele hidratada e com brilho saudável</span>
-    <span class="tag" onclick="st(this,'q13')">Controlar a oleosidade</span>
-    <span class="tag" onclick="st(this,'q13')">Reduzir marcas de expressão</span>
-    <span class="tag" onclick="st(this,'q13')">Pele de vidro — glass skin</span>
-    <span class="tag" onclick="st(this,'q13')">Resolver acne ou poros dilatados</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(12)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p13" onclick="ir(14)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t14"><div class="inner">
-  <div class="bloco">Dinheiro e valor</div><div class="qnum">14 / 20</div>
-  <h2 class="qtitulo">Quanto você gasta por mês com produtos de beleza e skincare?</h2>
-  <div class="chips" id="g14">
-    <span class="chip" onclick="sh(this,'q14')">Menos de R$100</span>
-    <span class="chip" onclick="sh(this,'q14')">R$100 a R$250</span>
-    <span class="chip" onclick="sh(this,'q14')">R$250 a R$500</span>
-    <span class="chip" onclick="sh(this,'q14')">Mais de R$500</span>
-  </div>
-  <div class="nav"><button class="btn-back" onclick="ir(13)">← voltar</button><span></span><button class="btn-prox" id="p14" onclick="ir(15)">Próxima →</button></div>
-</div></div>
-
-<div class="tela" id="t15"><div class="inner">
-  <div class="bloco">Dinheiro e valor</div><div class="qnum">15 / 20</div>
-  <h2 class="qtitulo">O dinheiro que você gasta com skincare está trazendo resultado?</h2>
-  <div class="escala">
-    <div class="barras" id="g15">
-      <div class="bw" onclick="sb(this,'q15',1)"><div class="bb"></div><span class="bn">1</span></div>
-      <div class="bw" onclick="sb(this,'q15',2)"><div class="bb"></div><span class="bn">2</span></div>
-      <div class="bw" onclick="sb(this,'q15',3)"><div class="bb"></div><span class="bn">3</span></div>
-      <div class="bw" onclick="sb(this,'q15',4)"><div class="bb"></div><span class="bn">4</span></div>
-      <div class="bw" onclick="sb(this,'q15',5)"><div class="bb"></div><span class="bn">5</span></div>
+<!-- Q2 CHIPS -->
+<div class="tela" id="t2">
+  <div class="inner">
+    <div class="bloco">Sobre você</div><div class="qnum">02 / 20</div>
+    <h2 class="qtit">Quantos produtos de skincare você tem em casa hoje?</h2>
+    <div class="chips" id="g2">
+      <span class="chip" onclick="sh(this,'q2')">Nenhum ainda</span>
+      <span class="chip" onclick="sh(this,'q2')">1 a 3</span>
+      <span class="chip" onclick="sh(this,'q2')">4 a 8</span>
+      <span class="chip" onclick="sh(this,'q2')">Mais de 8 — minha prateleira tá cheia</span>
     </div>
-    <div class="bends"><span>Zero resultado</span><span>Valeu cada centavo</span></div>
+    <div class="nav"><button class="btn-back" onclick="ir(1)">← voltar</button><span></span><button class="btn-prox" id="p2" onclick="ir(3)">Próxima →</button></div>
   </div>
-  <div class="nav"><button class="btn-back" onclick="ir(14)">← voltar</button><span></span><button class="btn-prox" id="p15" onclick="ir(16)">Próxima →</button></div>
-</div></div>
+</div>
 
-<div class="tela" id="t16"><div class="inner">
-  <div class="bloco">Dinheiro e valor</div><div class="qnum">16 / 20</div>
-  <h2 class="qtitulo">Se existisse algo que te dissesse exatamente o que usar, em que ordem, em que quantidade — ajustando sua rotina conforme sua pele evolui e com suporte para tirar dúvidas quando você travasse — quanto você acha que isso valeria por mês?</h2>
-  <div class="radios" id="g16">
-    <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Até R$20</strong><span>um cafezinho por semana</span></div></div>
-    <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Entre R$20 e R$40</strong><span>menos que um produto que não funciona</span></div></div>
-    <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Entre R$40 e R$60</strong><span>menos que uma consulta com esteticista</span></div></div>
-    <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Mais de R$60</strong><span>se funcionar de verdade, vale tudo</span></div></div>
-    <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Nenhuma das anteriores</strong><span></span></div></div>
+<!-- Q3 CHIPS -->
+<div class="tela" id="t3">
+  <div class="inner">
+    <div class="bloco">Sobre você</div><div class="qnum">03 / 20</div>
+    <h2 class="qtit">Quantos desses produtos você usa de forma consistente?</h2>
+    <div class="chips" id="g3">
+      <span class="chip" onclick="sh(this,'q3')">Nenhum</span>
+      <span class="chip" onclick="sh(this,'q3')">Só 1 ou 2</span>
+      <span class="chip" onclick="sh(this,'q3')">Metade deles</span>
+      <span class="chip" onclick="sh(this,'q3')">Quase todos</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(2)">← voltar</button><span></span><button class="btn-prox" id="p3" onclick="ir(4)">Próxima →</button></div>
   </div>
-  <div class="nav"><button class="btn-back" onclick="ir(15)">← voltar</button><span></span><button class="btn-prox" id="p16" onclick="ir(17)">Próxima →</button></div>
-</div></div>
+</div>
 
-<div class="tela" id="t17"><div class="inner">
-  <div class="bloco">Para finalizar</div><div class="qnum">17 / 20</div>
-  <h2 class="qtitulo">Você já usou algum app para ajudar na sua rotina de skincare?</h2>
-  <div class="cards" id="g17">
-    <div class="card" onclick="sc(this,'q17')">Sim e gostei</div>
-    <div class="card" onclick="sc(this,'q17')">Sim mas não funcionou para mim</div>
-    <div class="card" onclick="sc(this,'q17')">Não, nunca usei</div>
-    <div class="card" onclick="sc(this,'q17')">Não sabia que existia</div>
+<!-- Q4 TAGS -->
+<div class="tela" id="t4">
+  <div class="inner">
+    <div class="bloco">A dor de verdade</div><div class="qnum">04 / 20</div>
+    <h2 class="qtit">O que mais te trava na hora de montar uma rotina?</h2>
+    <p class="qdic">Pode marcar mais de um.</p>
+    <div class="tags" id="g4">
+      <span class="tag" onclick="st(this,'q4')">Não sei a ordem certa dos produtos</span>
+      <span class="tag" onclick="st(this,'q4')">Medo de misturar ingredientes errados</span>
+      <span class="tag" onclick="st(this,'q4')">Não sei o que minha pele precisa</span>
+      <span class="tag" onclick="st(this,'q4')">Muito produto, muita informação, confusão</span>
+      <span class="tag" onclick="st(this,'q4')">Falta de tempo pra pesquisar</span>
+      <span class="tag" onclick="st(this,'q4')">Já tentei e não vi resultado</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(3)">← voltar</button><span class="pular" onclick="ir(5)">pular</span><button class="btn-prox ok" id="p4" onclick="ir(5)">Próxima →</button></div>
   </div>
-  <div class="nav"><button class="btn-back" onclick="ir(16)">← voltar</button><span></span><button class="btn-prox" id="p17" onclick="ir(18)">Próxima →</button></div>
-</div></div>
+</div>
 
-<div class="tela" id="t18"><div class="inner">
-  <div class="bloco">Para finalizar</div><div class="qnum">18 / 20</div>
-  <h2 class="qtitulo">O que te faria testar um app de skincare pela primeira vez — ou de novo?</h2>
-  <p class="qdica">Pode marcar mais de um.</p>
-  <div class="tags" id="g18">
-    <span class="tag" onclick="st(this,'q18')">Ser baseado nos produtos que já tenho</span>
-    <span class="tag" onclick="st(this,'q18')">Ter resultado visível nos primeiros dias</span>
-    <span class="tag" onclick="st(this,'q18')">Ser simples de usar</span>
-    <span class="tag" onclick="st(this,'q18')">Ver depoimentos reais de outras mulheres</span>
-    <span class="tag" onclick="st(this,'q18')">Poder testar antes de pagar</span>
-    <span class="tag" onclick="st(this,'q18')">Indicação de alguém de confiança</span>
+<!-- Q5 CARDS -->
+<div class="tela" id="t5">
+  <div class="inner">
+    <div class="bloco">A dor de verdade</div><div class="qnum">05 / 20</div>
+    <h2 class="qtit">Você já comprou algum produto que ficou parado sem usar?</h2>
+    <div class="cards c3" id="g5">
+      <div class="card" onclick="sc(this,'q5')">Sim, tenho vários assim</div>
+      <div class="card" onclick="sc(this,'q5')">Sim, uns poucos</div>
+      <div class="card" onclick="sc(this,'q5')">Não, uso tudo que compro</div>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(4)">← voltar</button><span></span><button class="btn-prox" id="p5" onclick="ir(6)">Próxima →</button></div>
   </div>
-  <div class="nav"><button class="btn-back" onclick="ir(17)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p18" onclick="ir(19)">Próxima →</button></div>
-</div></div>
+</div>
 
-<div class="tela" id="t19"><div class="inner">
-  <div class="bloco">Para finalizar</div><div class="qnum">19 / 20</div>
-  <h2 class="qtitulo">Numa frase, qual é a sua maior frustração com skincare hoje?</h2>
-  <p class="qdica">Pode ser bem direta. Não existe resposta errada aqui.</p>
-  <textarea class="ta" id="ta19" placeholder="Escreve aqui do jeito que vier..."></textarea>
-  <div class="nav"><button class="btn-back" onclick="ir(18)">← voltar</button><span class="pode-pular">pode pular</span><button class="btn-prox ok" id="p19" onclick="ir(20)">Próxima →</button></div>
-</div></div>
+<!-- Q6 TAGS -->
+<div class="tela" id="t6">
+  <div class="inner">
+    <div class="bloco">A dor de verdade</div><div class="qnum">06 / 20</div>
+    <h2 class="qtit">Se você tem produtos parados, por que eles estão ali sem uso?</h2>
+    <p class="qdic">Pode marcar mais de um.</p>
+    <div class="tags" id="g6">
+      <span class="tag" onclick="st(this,'q6')">Não sei como encaixar na rotina</span>
+      <span class="tag" onclick="st(this,'q6')">Comprei por impulso e me arrependi</span>
+      <span class="tag" onclick="st(this,'q6')">Vi em algum lugar e achei que precisava</span>
+      <span class="tag" onclick="st(this,'q6')">Minha pele reagiu mal e parei</span>
+      <span class="tag" onclick="st(this,'q6')">Não aplicável</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(5)">← voltar</button><span class="pular" onclick="ir(7)">pular</span><button class="btn-prox ok" id="p6" onclick="ir(7)">Próxima →</button></div>
+  </div>
+</div>
 
-<div class="tela" id="t20"><div class="inner">
-  <div class="bloco">Para finalizar</div><div class="qnum">20 / 20</div>
-  <h2 class="qtitulo">Se você pudesse pedir uma coisa para a sua rotina de skincare, o que seria?</h2>
-  <p class="qdica">Última pergunta. Pode sonhar à vontade.</p>
-  <textarea class="ta" id="ta20" placeholder="Escreve aqui, sem filtro..."></textarea>
-  <div class="nav"><button class="btn-back" onclick="ir(19)">← voltar</button><span></span><button class="btn-prox ok" id="p20" onclick="enviar()">Enviar ✦</button></div>
-</div></div>
+<!-- Q7 BARRAS -->
+<div class="tela" id="t7">
+  <div class="inner">
+    <div class="bloco">A dor de verdade</div><div class="qnum">07 / 20</div>
+    <h2 class="qtit">O quanto você sente que desperdiçou dinheiro com skincare?</h2>
+    <div class="escala">
+      <div class="barras" id="g7">
+        <div class="bw" onclick="sb(this,'q7',1)"><div class="bb"></div><span class="bn">1</span></div>
+        <div class="bw" onclick="sb(this,'q7',2)"><div class="bb"></div><span class="bn">2</span></div>
+        <div class="bw" onclick="sb(this,'q7',3)"><div class="bb"></div><span class="bn">3</span></div>
+        <div class="bw" onclick="sb(this,'q7',4)"><div class="bb"></div><span class="bn">4</span></div>
+        <div class="bw" onclick="sb(this,'q7',5)"><div class="bb"></div><span class="bn">5</span></div>
+      </div>
+      <div class="bends"><span>Nunca desperdicei</span><span>Muito dinheiro foi embora</span></div>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(6)">← voltar</button><span></span><button class="btn-prox" id="p7" onclick="ir(8)">Próxima →</button></div>
+  </div>
+</div>
 
+<!-- Q8 TAGS -->
+<div class="tela" id="t8">
+  <div class="inner">
+    <div class="bloco">Informação e confiança</div><div class="qnum">08 / 20</div>
+    <h2 class="qtit">Onde você costuma buscar informação sobre skincare?</h2>
+    <p class="qdic">Pode marcar mais de um.</p>
+    <div class="tags" id="g8">
+      <span class="tag" onclick="st(this,'q8')">Instagram</span>
+      <span class="tag" onclick="st(this,'q8')">TikTok</span>
+      <span class="tag" onclick="st(this,'q8')">YouTube</span>
+      <span class="tag" onclick="st(this,'q8')">Indicação de amigas</span>
+      <span class="tag" onclick="st(this,'q8')">Dermatologista</span>
+      <span class="tag" onclick="st(this,'q8')">Google</span>
+      <span class="tag" onclick="st(this,'q8')">Fico perdida mesmo</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(7)">← voltar</button><span class="pular" onclick="ir(9)">pular</span><button class="btn-prox ok" id="p8" onclick="ir(9)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q9 CARDS -->
+<div class="tela" id="t9">
+  <div class="inner">
+    <div class="bloco">Informação e confiança</div><div class="qnum">09 / 20</div>
+    <h2 class="qtit">Você já seguiu uma dica de skincare que não funcionou para você?</h2>
+    <div class="cards" id="g9">
+      <div class="card" onclick="sc(this,'q9')">Sim, várias vezes</div>
+      <div class="card" onclick="sc(this,'q9')">Sim, uma ou duas</div>
+      <div class="card" onclick="sc(this,'q9')">Não, geralmente funciona</div>
+      <div class="card" onclick="sc(this,'q9')">Nunca sigo dicas, não confio</div>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(8)">← voltar</button><span></span><button class="btn-prox" id="p9" onclick="ir(10)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q10 TAGS -->
+<div class="tela" id="t10">
+  <div class="inner">
+    <div class="bloco">Informação e confiança</div><div class="qnum">10 / 20</div>
+    <h2 class="qtit">O que faria você confiar de verdade em uma recomendação de skincare?</h2>
+    <p class="qdic">Pode marcar mais de um.</p>
+    <div class="tags" id="g10">
+      <span class="tag" onclick="st(this,'q10')">Antes e depois real de pessoas comuns</span>
+      <span class="tag" onclick="st(this,'q10')">Explicação do porquê funciona para mim</span>
+      <span class="tag" onclick="st(this,'q10')">Ser baseado nos meus produtos</span>
+      <span class="tag" onclick="st(this,'q10')">Recomendação de uma especialista</span>
+      <span class="tag" onclick="st(this,'q10')">Poder testar antes de pagar</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(9)">← voltar</button><span class="pular" onclick="ir(11)">pular</span><button class="btn-prox ok" id="p10" onclick="ir(11)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q11 CHIPS -->
+<div class="tela" id="t11">
+  <div class="inner">
+    <div class="bloco">Rotina e consistência</div><div class="qnum">11 / 20</div>
+    <h2 class="qtit">Com que frequência você faz uma rotina de skincare?</h2>
+    <div class="chips" id="g11">
+      <span class="chip" onclick="sh(this,'q11')">Todo dia, manhã e noite</span>
+      <span class="chip" onclick="sh(this,'q11')">Quase todo dia</span>
+      <span class="chip" onclick="sh(this,'q11')">Quando lembro</span>
+      <span class="chip" onclick="sh(this,'q11')">Raramente ou nunca</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(10)">← voltar</button><span></span><button class="btn-prox" id="p11" onclick="ir(12)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q12 TAGS -->
+<div class="tela" id="t12">
+  <div class="inner">
+    <div class="bloco">Rotina e consistência</div><div class="qnum">12 / 20</div>
+    <h2 class="qtit">O que mais te faz abandonar uma rotina que estava funcionando?</h2>
+    <p class="qdic">Pode marcar mais de um.</p>
+    <div class="tags" id="g12">
+      <span class="tag" onclick="st(this,'q12')">Falta de tempo</span>
+      <span class="tag" onclick="st(this,'q12')">Não vi resultado rápido</span>
+      <span class="tag" onclick="st(this,'q12')">Minha pele reagiu e eu travei</span>
+      <span class="tag" onclick="st(this,'q12')">Comprei produtos novos e me perdi</span>
+      <span class="tag" onclick="st(this,'q12')">Não tenho rotina ainda</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(11)">← voltar</button><span class="pular" onclick="ir(13)">pular</span><button class="btn-prox ok" id="p12" onclick="ir(13)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q13 TAGS -->
+<div class="tela" id="t13">
+  <div class="inner">
+    <div class="bloco">Rotina e consistência</div><div class="qnum">13 / 20</div>
+    <h2 class="qtit">Qual o maior desejo que você tem para a sua pele hoje?</h2>
+    <p class="qdic">Pode marcar mais de um.</p>
+    <div class="tags" id="g13">
+      <span class="tag" onclick="st(this,'q13')">Pele mais uniforme e sem manchas</span>
+      <span class="tag" onclick="st(this,'q13')">Pele hidratada e com brilho saudável</span>
+      <span class="tag" onclick="st(this,'q13')">Controlar a oleosidade</span>
+      <span class="tag" onclick="st(this,'q13')">Reduzir marcas de expressão</span>
+      <span class="tag" onclick="st(this,'q13')">Pele de vidro — glass skin</span>
+      <span class="tag" onclick="st(this,'q13')">Resolver acne ou poros dilatados</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(12)">← voltar</button><span class="pular" onclick="ir(14)">pular</span><button class="btn-prox ok" id="p13" onclick="ir(14)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q14 CHIPS -->
+<div class="tela" id="t14">
+  <div class="inner">
+    <div class="bloco">Dinheiro e valor</div><div class="qnum">14 / 20</div>
+    <h2 class="qtit">Quanto você gasta por mês com produtos de beleza e skincare?</h2>
+    <div class="chips" id="g14">
+      <span class="chip" onclick="sh(this,'q14')">Menos de R$100</span>
+      <span class="chip" onclick="sh(this,'q14')">R$100 a R$250</span>
+      <span class="chip" onclick="sh(this,'q14')">R$250 a R$500</span>
+      <span class="chip" onclick="sh(this,'q14')">Mais de R$500</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(13)">← voltar</button><span></span><button class="btn-prox" id="p14" onclick="ir(15)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q15 BARRAS -->
+<div class="tela" id="t15">
+  <div class="inner">
+    <div class="bloco">Dinheiro e valor</div><div class="qnum">15 / 20</div>
+    <h2 class="qtit">O dinheiro que você gasta com skincare está trazendo resultado?</h2>
+    <div class="escala">
+      <div class="barras" id="g15">
+        <div class="bw" onclick="sb(this,'q15',1)"><div class="bb"></div><span class="bn">1</span></div>
+        <div class="bw" onclick="sb(this,'q15',2)"><div class="bb"></div><span class="bn">2</span></div>
+        <div class="bw" onclick="sb(this,'q15',3)"><div class="bb"></div><span class="bn">3</span></div>
+        <div class="bw" onclick="sb(this,'q15',4)"><div class="bb"></div><span class="bn">4</span></div>
+        <div class="bw" onclick="sb(this,'q15',5)"><div class="bb"></div><span class="bn">5</span></div>
+      </div>
+      <div class="bends"><span>Zero resultado</span><span>Valeu cada centavo</span></div>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(14)">← voltar</button><span></span><button class="btn-prox" id="p15" onclick="ir(16)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q16 RADIO — PERGUNTA CHAVE -->
+<div class="tela" id="t16">
+  <div class="inner">
+    <div class="bloco">Dinheiro e valor</div><div class="qnum">16 / 20</div>
+    <h2 class="qtit">Se existisse algo que te dissesse exatamente o que usar, em que ordem, em que quantidade — ajustando sua rotina conforme sua pele evolui e com suporte para tirar dúvidas quando você travasse — quanto você acha que isso valeria por mês?</h2>
+    <div class="radios" id="g16">
+      <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Até R$20</strong><span>um cafezinho por semana</span></div></div>
+      <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Entre R$20 e R$40</strong><span>menos que um produto que não funciona</span></div></div>
+      <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Entre R$40 e R$60</strong><span>menos que uma consulta com esteticista</span></div></div>
+      <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Mais de R$60</strong><span>se funcionar de verdade, vale tudo</span></div></div>
+      <div class="ropt" onclick="sr(this,'q16')"><div class="rc"></div><div class="rl"><strong>Nenhuma das anteriores</strong><span></span></div></div>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(15)">← voltar</button><span></span><button class="btn-prox" id="p16" onclick="ir(17)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q17 CARDS -->
+<div class="tela" id="t17">
+  <div class="inner">
+    <div class="bloco">Para finalizar</div><div class="qnum">17 / 20</div>
+    <h2 class="qtit">Você já usou algum app para ajudar na sua rotina de skincare?</h2>
+    <div class="cards" id="g17">
+      <div class="card" onclick="sc(this,'q17')">Sim e gostei</div>
+      <div class="card" onclick="sc(this,'q17')">Sim mas não funcionou para mim</div>
+      <div class="card" onclick="sc(this,'q17')">Não, nunca usei</div>
+      <div class="card" onclick="sc(this,'q17')">Não sabia que existia</div>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(16)">← voltar</button><span></span><button class="btn-prox" id="p17" onclick="ir(18)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q18 TAGS -->
+<div class="tela" id="t18">
+  <div class="inner">
+    <div class="bloco">Para finalizar</div><div class="qnum">18 / 20</div>
+    <h2 class="qtit">O que te faria testar um app de skincare pela primeira vez — ou de novo?</h2>
+    <p class="qdic">Pode marcar mais de um.</p>
+    <div class="tags" id="g18">
+      <span class="tag" onclick="st(this,'q18')">Ser baseado nos produtos que já tenho</span>
+      <span class="tag" onclick="st(this,'q18')">Ter resultado visível nos primeiros dias</span>
+      <span class="tag" onclick="st(this,'q18')">Ser simples de usar</span>
+      <span class="tag" onclick="st(this,'q18')">Ver depoimentos reais de outras mulheres</span>
+      <span class="tag" onclick="st(this,'q18')">Poder testar antes de pagar</span>
+      <span class="tag" onclick="st(this,'q18')">Indicação de alguém de confiança</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(17)">← voltar</button><span class="pular" onclick="ir(19)">pular</span><button class="btn-prox ok" id="p18" onclick="ir(19)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q19 TEXTAREA -->
+<div class="tela" id="t19">
+  <div class="inner">
+    <div class="bloco">Para finalizar</div><div class="qnum">19 / 20</div>
+    <h2 class="qtit">Numa frase, qual é a sua maior frustração com skincare hoje?</h2>
+    <p class="qdic">Pode ser bem direta. Não existe resposta errada aqui.</p>
+    <textarea class="ta" id="ta19" placeholder="Escreve aqui do jeito que vier..."></textarea>
+    <div class="nav"><button class="btn-back" onclick="ir(18)">← voltar</button><span class="pular" onclick="ir(20)">pular</span><button class="btn-prox ok" id="p19" onclick="ir(20)">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- Q20 TEXTAREA -->
+<div class="tela" id="t20">
+  <div class="inner">
+    <div class="bloco">Para finalizar</div><div class="qnum">20 / 20</div>
+    <h2 class="qtit">Se você pudesse pedir uma coisa para a sua rotina de skincare, o que seria?</h2>
+    <p class="qdic">Última pergunta. Pode sonhar à vontade.</p>
+    <textarea class="ta" id="ta20" placeholder="Escreve aqui, sem filtro..."></textarea>
+    <div class="nav"><button class="btn-back" onclick="ir(19)">← voltar</button><span></span><button class="btn-prox ok" id="p20" onclick="ir('contato')">Próxima →</button></div>
+  </div>
+</div>
+
+<!-- ══ TELA CONTATO ══ -->
+<div class="tela" id="tcontato">
+  <div class="inner">
+    <div class="ct-g">✦</div>
+    <h2 class="ct-h">Suas respostas foram ouro. A gente está nos últimos detalhes de algo <em>inédito no Brasil</em> — feito pra você.</h2>
+    <p class="ct-p">Deixa seu contato e a gente te leva junto.</p>
+    <div class="campo-wrap">
+      <label class="campo-lbl">Nome</label>
+      <input class="campo" id="fnome" type="text" placeholder="Seu nome">
+    </div>
+    <div class="campo-wrap">
+      <label class="campo-lbl">E-mail</label>
+      <input class="campo" id="femail" type="email" placeholder="seu@email.com">
+    </div>
+    <div class="campo-wrap">
+      <label class="campo-lbl">WhatsApp</label>
+      <input class="campo" id="fwhats" type="tel" placeholder="(21) 99999-9999">
+    </div>
+    <button class="btn-enviar" onclick="enviar()">Quero ser avisada ✦</button>
+    <button class="btn-pular" onclick="enviarSemContato()">Prefiro não deixar meu contato</button>
+  </div>
+</div>
+
+<!-- ══ TELA FINAL ══ -->
 <div class="tela" id="tfim">
   <div class="inner">
     <div class="fim-g">✦</div>
-    <h2 class="fim-h">Obrigada por compartilhar<br>isso <em>com a gente.</em></h2>
-    <p class="fim-p">Suas respostas vão ajudar a criar algo feito de verdade para mulheres como você. Em breve a gente volta com uma novidade — e você vai entender por que perguntamos tudo isso.</p>
+    <h2 class="fim-h">Obrigada por<br>compartilhar isso<br><em>com a gente.</em></h2>
+    <p class="fim-p">Suas respostas vão ajudar a criar algo feito de verdade para mulheres como você. Em breve a gente volta — e você vai entender por que perguntamos tudo isso.</p>
     <span class="fim-b">HEGAISKIN · Em breve</span>
   </div>
 </div>
 
 <script>
-const SCRIPT='https://script.google.com/macros/s/AKfycbxROnrNjhzjlbUHi4hvnjgd3nbtsxXbfMOK9StRqqYfkMi4fjda-49BuN-Gp-99h-gFHw/exec';
+const SCRIPT='https://script.google.com/macros/s/AKfycbyqEes34w5t_-JSdi9-fstEn88sDp2sBwDa1qpMUtk52_Jr6NuYqEGckV5q-jFhV9O8jg/exec';
 const R={};
+
+// Monta barra de passos
+const prow=document.getElementById('pbar-row');
+for(let i=0;i<20;i++){const d=document.createElement('div');d.className='pbar-step';d.id='ps'+i;prow.appendChild(d);}
 
 function ir(n){
   document.querySelectorAll('.tela').forEach(t=>t.classList.remove('ativa'));
-  const id = n==='fim'?'tfim':'t'+n;
+  const id=n==='contato'?'tcontato':n==='fim'?'tfim':'t'+n;
   document.getElementById(id).classList.add('ativa');
   window.scrollTo(0,0);
-  const f=document.getElementById('prog-fill');
-  const h=document.getElementById('hdr-n');
-  if(n===0){f.style.width='0%';h.textContent='';}
-  else if(n==='fim'){f.style.width='100%';h.textContent='';}
-  else{f.style.width=Math.round((n/20)*100)+'%';h.textContent=n+' de 20';}
+
+  const wrap=document.getElementById('pbar-wrap');
+  const fill=document.getElementById('pfill');
+  const hdrn=document.getElementById('hdr-n');
+
+  if(n===0){fill.style.width='0%';hdrn.textContent='';wrap.classList.remove('show');return;}
+  if(n==='contato'||n==='fim'){fill.style.width='100%';hdrn.textContent='';
+    for(let i=0;i<20;i++)document.getElementById('ps'+i).className='pbar-step done';
+    return;}
+
+  wrap.classList.add('show');
+  const pct=Math.round((n/20)*100);
+  fill.style.width=pct+'%';
+  hdrn.textContent=n+' de 20';
+
+  for(let i=0;i<20;i++){
+    const el=document.getElementById('ps'+i);
+    if(i<n-1)el.className='pbar-step done';
+    else if(i===n-1)el.className='pbar-step active';
+    else el.className='pbar-step';
+  }
 }
 
 function ok(q){const b=document.getElementById('p'+q.replace('q',''));if(b)b.classList.add('ok');}
@@ -422,6 +602,16 @@ function sb(el,q,v){el.closest('.barras').querySelectorAll('.bw').forEach((b,i)=
 function sr(el,q){el.closest('.radios').querySelectorAll('.ropt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');R[q]=el.querySelector('strong').textContent.trim();ok(q);}
 
 function enviar(){
+  R.q19=document.getElementById('ta19').value.trim();
+  R.q20=document.getElementById('ta20').value.trim();
+  R.nome=document.getElementById('fnome').value.trim();
+  R.email=document.getElementById('femail').value.trim();
+  R.whatsapp=document.getElementById('fwhats').value.trim();
+  ir('fim');
+  fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(R)}).catch(()=>{});
+}
+
+function enviarSemContato(){
   R.q19=document.getElementById('ta19').value.trim();
   R.q20=document.getElementById('ta20').value.trim();
   ir('fim');
