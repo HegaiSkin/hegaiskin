@@ -191,11 +191,11 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
 <!-- ══ CAPA ══ -->
 <div class="tela ativa" id="t0">
   <div class="inner">
-    <div class="c-pill">Para mulheres que amam se cuidar.</div>
+    <div class="c-pill">Para mulheres que amam skincare</div>
     <h1 class="c-h">Antes de cuidar da pele,<br>a gente precisa <em>te ouvir.</em></h1>
-    <p class="c-p">Sem julgamento. Só queremos entender o que passa pela cabeça de quem quer cuidar da pele e de si mesma — mas às vezes se perde no caminho.</p>
+    <p class="c-p">Sem julgamento, sem venda. Só queremos entender o que passa pela cabeça de quem ama skincare — mas às vezes se perde no caminho.</p>
     <div class="c-meta">
-      <span class="c-m">2 minutos</span>
+      <span class="c-m">4 minutos</span>
       <span class="c-m">Sem spam</span>
       <span class="c-m">Você faz parte disso</span>
     </div>
@@ -214,7 +214,25 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <div class="card" onclick="sc(this,'q1')">Já tenho rotina mas quero melhorar</div>
       <div class="card" onclick="sc(this,'q1')">Já fui consistente mas parei</div>
     </div>
-    <div class="nav"><button class="btn-back" onclick="ir(0)">← voltar</button><span></span><button class="btn-prox" id="p1" onclick="ir(2)">Próxima →</button></div>
+    <div class="nav"><button class="btn-back" onclick="ir(0)">← voltar</button><span></span><button class="btn-prox" id="p1" onclick="ir('1b')">Próxima →</button></div>
+  </div>
+</div>
+
+
+<!-- Q1B IDADE -->
+<div class="tela" id="t1b">
+  <div class="inner">
+    <div class="bloco">Sobre você</div>
+    <div class="qnum">01b / 20</div>
+    <h2 class="qtit">Qual a sua faixa de idade?</h2>
+    <div class="chips" id="g1b">
+      <span class="chip" onclick="sh(this,'q1b')">Menos de 20 anos</span>
+      <span class="chip" onclick="sh(this,'q1b')">20 a 29 anos</span>
+      <span class="chip" onclick="sh(this,'q1b')">30 a 39 anos</span>
+      <span class="chip" onclick="sh(this,'q1b')">40 a 49 anos</span>
+      <span class="chip" onclick="sh(this,'q1b')">50 anos ou mais</span>
+    </div>
+    <div class="nav"><button class="btn-back" onclick="ir(1)">← voltar</button><span></span><button class="btn-prox" id="p1b" onclick="ir(2)">Próxima →</button></div>
   </div>
 </div>
 
@@ -528,7 +546,7 @@ Quanto você pagaria por mês por isso?</h2>
 <div class="tela" id="tcontato">
   <div class="inner">
     <div class="ct-g">✦</div>
-    <h2 class="ct-h">Suas respostas foram ouro. A gente está nos últimos detalhes de algo <em>inédito.</em> — feito pra você.</h2>
+    <h2 class="ct-h">Suas respostas foram ouro. A gente está nos últimos detalhes de algo <em>inédito no Brasil</em> — feito pra você.</h2>
     <p class="ct-p">Deixa seu contato e a gente te leva junto.</p>
     <div class="campo-wrap">
       <label class="campo-lbl">Nome</label>
