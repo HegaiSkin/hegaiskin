@@ -193,9 +193,9 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
   <div class="inner">
     <div class="c-pill">Para mulheres que amam skincare</div>
     <h1 class="c-h">Antes de cuidar da pele,<br>a gente precisa <em>te ouvir.</em></h1>
-    <p class="c-p">Sem julgamento, sem venda. Só queremos entender o que passa pela cabeça de quem ama skincare — mas às vezes se perde no caminho.</p>
+    <p class="c-p">Sem julgamento. Só queremos entender o que passa pela cabeça de quem ama skincare — mas às vezes se perde no caminho.</p>
     <div class="c-meta">
-      <span class="c-m">4 minutos</span>
+      <span class="c-m">2 minutos</span>
       <span class="c-m">Sem spam</span>
       <span class="c-m">Você faz parte disso</span>
     </div>
@@ -574,6 +574,15 @@ Quanto você pagaria por mês por isso?</h2>
     <h2 class="fim-h">Obrigada por<br>compartilhar isso<br><em>com a gente.</em></h2>
     <p class="fim-p">Suas respostas vão ajudar a criar algo feito de verdade para mulheres como você. Em breve a gente volta — e você vai entender por que perguntamos tudo isso.</p>
     <span class="fim-b">HEGAISKIN · Em breve</span>
+
+    <!-- Botão WhatsApp — aparece só para quem deixou contato -->
+    <div id="fim-whats" style="display:none;margin-top:36px;text-align:center;">
+      <a href="https://chat.whatsapp.com/CK5ASAh0k7t1e3nt6zsube" target="_blank"
+        style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:400px;margin:0 auto;padding:13px 48px;background:#25D366;color:#FFFFFF;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;">
+        ✦ Entrar no grupo Minha Skin
+      </a>
+      <p style="font-size:11px;color:#9A7040;text-align:center;max-width:400px;margin:8px auto 0;line-height:1.6;font-style:italic;">Grupo exclusivo para quem quer cuidar da pele de verdade. Acesso antecipado, bastidores e dicas antes de todo mundo.</p>
+    </div>
   </div>
 </div>
 
@@ -628,6 +637,7 @@ function enviar(){
   R.email=document.getElementById('femail').value.trim();
   R.whatsapp=document.getElementById('fwhats').value.trim();
   ir('fim');
+  document.getElementById('fim-whats').style.display='block';
   fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(R)}).catch(()=>{});
 }
 
