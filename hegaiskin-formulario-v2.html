@@ -163,6 +163,15 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
 .fim-p{font-size:14px;color:#9A7040;line-height:1.75;max-width:360px;margin:0 auto 28px;font-weight:300}
 .fim-b{font-size:10px;letter-spacing:.2em;color:var(--goldl);text-transform:uppercase;border:1px solid rgba(201,169,110,.2);padding:9px 22px;border-radius:2px}
 
+
+/* OUTRO */
+.outro-input{display:none;width:100%;margin-top:8px;background:transparent;border:none;border-bottom:2px solid var(--border);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--dark);padding:8px 0;outline:none;transition:border-color .2s}
+.outro-input:focus{border-bottom-color:var(--goldm)}
+.outro-input::placeholder{color:var(--goldl);font-style:italic}
+.card.outro-card{border-style:dashed;color:var(--muted)}
+.chip.outro-chip{border-style:dashed;color:var(--muted)}
+.tag.outro-tag{border-style:dashed;color:var(--muted)}
+
 @media(max-width:480px){
   .cards{grid-template-columns:1fr}
   .cards.c3{grid-template-columns:1fr 1fr}
@@ -193,9 +202,9 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
   <div class="inner">
     <div class="c-pill">Para mulheres que amam skincare</div>
     <h1 class="c-h">Antes de cuidar da pele,<br>a gente precisa <em>te ouvir.</em></h1>
-    <p class="c-p">Sem julgamento. Só queremos entender o que passa pela cabeça de quem ama skincare — mas às vezes se perde no caminho.</p>
+    <p class="c-p">Sem julgamento, sem venda. Só queremos entender o que passa pela cabeça de quem ama skincare — mas às vezes se perde no caminho.</p>
     <div class="c-meta">
-      <span class="c-m">2 minutos</span>
+      <span class="c-m">4 minutos</span>
       <span class="c-m">Sem spam</span>
       <span class="c-m">Você faz parte disso</span>
     </div>
@@ -213,6 +222,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <div class="card" onclick="sc(this,'q1')">Tenho produtos mas não sei usar direito</div>
       <div class="card" onclick="sc(this,'q1')">Já tenho rotina mas quero melhorar</div>
       <div class="card" onclick="sc(this,'q1')">Já fui consistente mas parei</div>
+      <div class="card outro-card" onclick="ativarOutro(this,'q1','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></div>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(0)">← voltar</button><span></span><button class="btn-prox" id="p1" onclick="ir('1b')">Próxima →</button></div>
   </div>
@@ -246,6 +256,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="chip" onclick="sh(this,'q2')">1 a 3</span>
       <span class="chip" onclick="sh(this,'q2')">4 a 8</span>
       <span class="chip" onclick="sh(this,'q2')">Mais de 8 — minha prateleira tá cheia</span>
+      <span class="chip outro-chip" onclick="ativarOutro(this,'q2','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(1)">← voltar</button><span></span><button class="btn-prox" id="p2" onclick="ir(3)">Próxima →</button></div>
   </div>
@@ -261,6 +272,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="chip" onclick="sh(this,'q3')">Só 1 ou 2</span>
       <span class="chip" onclick="sh(this,'q3')">Metade deles</span>
       <span class="chip" onclick="sh(this,'q3')">Quase todos</span>
+      <span class="chip outro-chip" onclick="ativarOutro(this,'q3','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(2)">← voltar</button><span></span><button class="btn-prox" id="p3" onclick="ir(4)">Próxima →</button></div>
   </div>
@@ -279,6 +291,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="tag" onclick="st(this,'q4')">Muito produto, muita informação, confusão</span>
       <span class="tag" onclick="st(this,'q4')">Falta de tempo pra pesquisar</span>
       <span class="tag" onclick="st(this,'q4')">Já tentei e não vi resultado</span>
+      <span class="tag outro-tag" onclick="ativarOutro(this,'q4','multi')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(3)">← voltar</button><span class="pular" onclick="ir(5)">pular</span><button class="btn-prox ok" id="p4" onclick="ir(5)">Próxima →</button></div>
   </div>
@@ -293,6 +306,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <div class="card" onclick="sc(this,'q5')">Sim, tenho vários assim</div>
       <div class="card" onclick="sc(this,'q5')">Sim, uns poucos</div>
       <div class="card" onclick="sc(this,'q5')">Não, uso tudo que compro</div>
+      <div class="card outro-card" onclick="ativarOutro(this,'q5','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></div>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(4)">← voltar</button><span></span><button class="btn-prox" id="p5" onclick="ir(6)">Próxima →</button></div>
   </div>
@@ -310,6 +324,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="tag" onclick="st(this,'q6')">Vi em algum lugar e achei que precisava</span>
       <span class="tag" onclick="st(this,'q6')">Minha pele reagiu mal e parei</span>
       <span class="tag" onclick="st(this,'q6')">Não aplicável</span>
+      <span class="tag outro-tag" onclick="ativarOutro(this,'q6','multi')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(5)">← voltar</button><span class="pular" onclick="ir(7)">pular</span><button class="btn-prox ok" id="p6" onclick="ir(7)">Próxima →</button></div>
   </div>
@@ -348,6 +363,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="tag" onclick="st(this,'q8')">Dermatologista</span>
       <span class="tag" onclick="st(this,'q8')">Google</span>
       <span class="tag" onclick="st(this,'q8')">Fico perdida mesmo</span>
+      <span class="tag outro-tag" onclick="ativarOutro(this,'q8','multi')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(7)">← voltar</button><span class="pular" onclick="ir(9)">pular</span><button class="btn-prox ok" id="p8" onclick="ir(9)">Próxima →</button></div>
   </div>
@@ -363,6 +379,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <div class="card" onclick="sc(this,'q9')">Sim, uma ou duas</div>
       <div class="card" onclick="sc(this,'q9')">Não, geralmente funciona</div>
       <div class="card" onclick="sc(this,'q9')">Nunca sigo dicas, não confio</div>
+      <div class="card outro-card" onclick="ativarOutro(this,'q9','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></div>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(8)">← voltar</button><span></span><button class="btn-prox" id="p9" onclick="ir(10)">Próxima →</button></div>
   </div>
@@ -380,6 +397,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="tag" onclick="st(this,'q10')">Ser baseado nos meus produtos</span>
       <span class="tag" onclick="st(this,'q10')">Recomendação de uma especialista</span>
       <span class="tag" onclick="st(this,'q10')">Poder testar antes de pagar</span>
+      <span class="tag outro-tag" onclick="ativarOutro(this,'q10','multi')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(9)">← voltar</button><span class="pular" onclick="ir(11)">pular</span><button class="btn-prox ok" id="p10" onclick="ir(11)">Próxima →</button></div>
   </div>
@@ -395,6 +413,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="chip" onclick="sh(this,'q11')">Quase todo dia</span>
       <span class="chip" onclick="sh(this,'q11')">Quando lembro</span>
       <span class="chip" onclick="sh(this,'q11')">Raramente ou nunca</span>
+      <span class="chip outro-chip" onclick="ativarOutro(this,'q11','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(10)">← voltar</button><span></span><button class="btn-prox" id="p11" onclick="ir(12)">Próxima →</button></div>
   </div>
@@ -412,6 +431,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="tag" onclick="st(this,'q12')">Minha pele reagiu e eu travei</span>
       <span class="tag" onclick="st(this,'q12')">Comprei produtos novos e me perdi</span>
       <span class="tag" onclick="st(this,'q12')">Não tenho rotina ainda</span>
+      <span class="tag outro-tag" onclick="ativarOutro(this,'q12','multi')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(11)">← voltar</button><span class="pular" onclick="ir(13)">pular</span><button class="btn-prox ok" id="p12" onclick="ir(13)">Próxima →</button></div>
   </div>
@@ -430,6 +450,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="tag" onclick="st(this,'q13')">Reduzir marcas de expressão</span>
       <span class="tag" onclick="st(this,'q13')">Pele de vidro — glass skin</span>
       <span class="tag" onclick="st(this,'q13')">Resolver acne ou poros dilatados</span>
+      <span class="tag outro-tag" onclick="ativarOutro(this,'q13','multi')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(12)">← voltar</button><span class="pular" onclick="ir(14)">pular</span><button class="btn-prox ok" id="p13" onclick="ir(14)">Próxima →</button></div>
   </div>
@@ -445,6 +466,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t
       <span class="chip" onclick="sh(this,'q14')">R$100 a R$250</span>
       <span class="chip" onclick="sh(this,'q14')">R$250 a R$500</span>
       <span class="chip" onclick="sh(this,'q14')">Mais de R$500</span>
+      <span class="chip outro-chip" onclick="ativarOutro(this,'q14','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(13)">← voltar</button><span></span><button class="btn-prox" id="p14" onclick="ir(15)">Próxima →</button></div>
   </div>
@@ -497,6 +519,7 @@ Quanto você pagaria por mês por isso?</h2>
       <div class="card" onclick="sc(this,'q17')">Sim mas não funcionou para mim</div>
       <div class="card" onclick="sc(this,'q17')">Não, nunca usei</div>
       <div class="card" onclick="sc(this,'q17')">Não sabia que existia</div>
+      <div class="card outro-card" onclick="ativarOutro(this,'q17','single')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></div>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(16)">← voltar</button><span></span><button class="btn-prox" id="p17" onclick="ir(18)">Próxima →</button></div>
   </div>
@@ -515,6 +538,7 @@ Quanto você pagaria por mês por isso?</h2>
       <span class="tag" onclick="st(this,'q18')">Ver depoimentos reais de outras mulheres</span>
       <span class="tag" onclick="st(this,'q18')">Poder testar antes de pagar</span>
       <span class="tag" onclick="st(this,'q18')">Indicação de alguém de confiança</span>
+      <span class="tag outro-tag" onclick="ativarOutro(this,'q18','multi')">Outro<input class="outro-input" type="text" placeholder="Escreve aqui..." onclick="event.stopPropagation()"></span>
     </div>
     <div class="nav"><button class="btn-back" onclick="ir(17)">← voltar</button><span class="pular" onclick="ir(19)">pular</span><button class="btn-prox ok" id="p18" onclick="ir(19)">Próxima →</button></div>
   </div>
@@ -574,15 +598,6 @@ Quanto você pagaria por mês por isso?</h2>
     <h2 class="fim-h">Obrigada por<br>compartilhar isso<br><em>com a gente.</em></h2>
     <p class="fim-p">Suas respostas vão ajudar a criar algo feito de verdade para mulheres como você. Em breve a gente volta — e você vai entender por que perguntamos tudo isso.</p>
     <span class="fim-b">HEGAISKIN · Em breve</span>
-
-    <!-- Botão WhatsApp — aparece só para quem deixou contato -->
-    <div id="fim-whats" style="display:none;margin-top:36px;text-align:center;">
-      <a href="https://chat.whatsapp.com/CK5ASAh0k7t1e3nt6zsube" target="_blank"
-        style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:400px;margin:0 auto;padding:13px 48px;background:#25D366;color:#FFFFFF;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;">
-        ✦ Entrar no grupo Minha Skin
-      </a>
-      <p style="font-size:11px;color:#9A7040;text-align:center;max-width:400px;margin:8px auto 0;line-height:1.6;font-style:italic;">Grupo exclusivo para quem quer cuidar da pele de verdade. Acesso antecipado, bastidores e dicas antes de todo mundo.</p>
-    </div>
   </div>
 </div>
 
@@ -622,6 +637,24 @@ function ir(n){
   }
 }
 
+
+function ativarOutro(el, q, tipo) {
+  const inp = el.querySelector('.outro-input');
+  if (tipo === 'single') {
+    el.closest('.cards') && el.closest('.cards').querySelectorAll('.card').forEach(c => { c.classList.remove('sel'); c.querySelector('.outro-input') && (c.querySelector('.outro-input').style.display='none'); });
+    el.closest('.chips') && el.closest('.chips').querySelectorAll('.chip').forEach(c => { c.classList.remove('sel'); c.querySelector('.outro-input') && (c.querySelector('.outro-input').style.display='none'); });
+  }
+  el.classList.toggle('sel');
+  if (el.classList.contains('sel')) {
+    inp.style.display = 'block';
+    inp.focus();
+    inp.oninput = function() { R[q] = this.value.trim() ? 'Outro: ' + this.value.trim() : ''; ok(q); };
+  } else {
+    inp.style.display = 'none';
+    R[q] = '';
+  }
+}
+
 function ok(q){const b=document.getElementById('p'+q.replace('q',''));if(b)b.classList.add('ok');}
 
 function sc(el,q){el.closest('.cards').querySelectorAll('.card').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');R[q]=el.textContent.trim();ok(q);}
@@ -637,7 +670,6 @@ function enviar(){
   R.email=document.getElementById('femail').value.trim();
   R.whatsapp=document.getElementById('fwhats').value.trim();
   ir('fim');
-  document.getElementById('fim-whats').style.display='block';
   fetch(SCRIPT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(R)}).catch(()=>{});
 }
 
